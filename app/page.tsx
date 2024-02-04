@@ -12,26 +12,30 @@ export default function Home() {
   const [lb, setLb] = useState([]);
   useEffect(() => {
     fetch("/api/get").then((d) => d.json()).then((d) => setLb(d));
-  })
+  }, [])
   return (
     <main className="flex flex-col w-full items-center">
       <h1 className="text-2xl">sl hall of shame</h1>
       <table>
-        <th>
-          <td>user</td>
-          <td>score</td>
-        </th>
+        <thead>
+          <tr className="px-4">
+            <th>user</th>
+            <th>score</th>
+          </tr>
+        </thead>
         
-        {
-          lb.map((entry: LEntry, i) => {
-            return (
-              <tr id={''+i}>
-                <td>{entry.user}</td>
-                <td>{entry.score}</td>
-              </tr>
-            )
-          })
-        }
+        <tbody>
+          {
+            lb.map((entry: LEntry, i) => {
+              return (
+                <tr key={i}>
+                  <td>{entry.user}</td>
+                  <td>{entry.score}</td>
+                </tr>
+              )
+            })
+          }
+        </tbody>
         
       </table>
     </main>
