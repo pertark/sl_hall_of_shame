@@ -14,8 +14,8 @@ export default function Home() {
     fetch("/api/get").then((d) => d.json()).then((d) => setLb(d));
   })
   return (
-    <main>
-      <h1>sl hall of shame</h1>
+    <main className="flex flex-col w-full items-center">
+      <h1 className="text-2xl">sl hall of shame</h1>
       <table>
         <th>
           <td>user</td>
