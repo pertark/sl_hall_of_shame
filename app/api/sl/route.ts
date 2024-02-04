@@ -1,4 +1,4 @@
-import { writeFile } from "fs";
+import { readFileSync, writeFile } from "fs";
 import { NextRequest, NextResponse } from "next/server";
 
 type Leaderboard = LEntry[];
@@ -20,7 +20,8 @@ export async function GET(request: NextRequest) {
     // here is where we would sanitize username if we were being thorough
 
     // race condition here fix later
-    const leaderboard: Leaderboard = require("../../../data/leaderboard.json");
+    // const leaderboard: Leaderboard = require("../../../data/leaderboard.json");
+    const leaderboard: Leaderboard = JSON.parse(readFileSync('data/leaderboard.json', 'utf-8'))
     let userEntry = leaderboard.find(e => e.user == username);
     if (!userEntry) {
         let newEntry: LEntry = {user: username, score: 1};
