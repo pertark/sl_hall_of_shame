@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     };
 
     // const leaderboard = JSON.parse(readFileSync("data/leaderboard.json"));
-    const leaderboard: Leaderboard = require("../../../data/leaderboard.json");
+    const leaderboard: Leaderboard = JSON.parse(readFileSync('data/leaderboard.json', 'utf-8'))
 
     leaderboard.sort((a,b) => b.score - a.score);
 
